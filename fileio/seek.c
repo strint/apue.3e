@@ -3,9 +3,10 @@
 int
 main(void)
 {
-	if (lseek(STDIN_FILENO, 0, SEEK_CUR) == -1)
+    off_t pos;
+	if ((pos = lseek(STDIN_FILENO, 2, SEEK_CUR)) == -1)
 		printf("cannot seek\n");
 	else
-		printf("seek OK\n");
+		printf("seek OK, %ld\n", (long)pos);
 	exit(0);
 }
