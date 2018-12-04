@@ -21,9 +21,11 @@ static void
 charatatime(char *str)
 {
 	char	*ptr;
-	int		c;
+	int c;
 
 	setbuf(stdout, NULL);			/* set unbuffered */
-	for (ptr = str; (c = *ptr++) != 0; )
-		putc(c, stdout);
+	for (ptr = str; (c = *ptr++) != 0; ) {
+	    putc(c, stdout);
+            usleep(600);
+        }
 }

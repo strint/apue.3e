@@ -28,6 +28,8 @@ charatatime(char *str)
 	int		c;
 
 	setbuf(stdout, NULL);			/* set unbuffered */
-	for (ptr = str; (c = *ptr++) != 0; )
+	for (ptr = str; (c = *ptr++) != 0; ) {
 		putc(c, stdout);
+            usleep(600);
+        }
 }
