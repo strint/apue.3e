@@ -7,8 +7,8 @@ my_alarm(int signo)
 	struct passwd	*rootptr;
 
 	printf("in signal handler\n");
-	if ((rootptr = getpwnam("root")) == NULL)
-			err_sys("getpwnam(root) error");
+	if ((rootptr = getpwnam("ubuntu")) == NULL)
+			err_sys("getpwnam(ubuntu) error");
 	alarm(1);
 }
 
@@ -20,9 +20,9 @@ main(void)
 	signal(SIGALRM, my_alarm);
 	alarm(1);
 	for ( ; ; ) {
-		if ((ptr = getpwnam("sar")) == NULL)
+		if ((ptr = getpwnam("ubuntu")) == NULL)
 			err_sys("getpwnam error");
-		if (strcmp(ptr->pw_name, "sar") != 0)
+		if (strcmp(ptr->pw_name, "ubuntu") != 0)
 			printf("return value corrupted!, pw_name = %s\n",
 					ptr->pw_name);
 	}
