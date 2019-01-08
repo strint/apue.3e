@@ -11,6 +11,7 @@ main(void)
 	if ((pid = fork()) < 0) {
 		err_sys("fork error");
 	} else if (pid == 0) {	/* specify pathname, specify environment */
+                fprintf(stderr, "\n====execle======\n");
 		if (execle("./echoall", "echoall", "myarg1",
 				"MY ARG2", (char *)0, env_init) < 0)
 			err_sys("execle error");
@@ -22,9 +23,12 @@ main(void)
 	if ((pid = fork()) < 0) {
 		err_sys("fork error");
 	} else if (pid == 0) {	/* specify filename, inherit environment */
-		if (execlp("echoall", "echoall", "only 1 arg", (char *)0) < 0)
+                fprintf(stderr, "\n====execlp======\n");
+		if (execlp("./echoall", "echoall", "only 1 arg", (char *)0) < 0)
 			err_sys("execlp error");
 	}
+        if(waitpid(pid, NULL, 0) < 0)
+            err_sys("wait error");
 
 	exit(0);
 }
